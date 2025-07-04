@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <title>Audio Player</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      color: #d9534f; /* Rot für Fehler */
+      margin-bottom: 10px;
+    }
+    .message {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+    audio {
+      margin-top: 20px;
+      width: 100%;
+      outline: none;
+    }
+  </style>
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
+      let urlPath = window.location.pathname;
+
+      let audioFile = urlPath.substring(urlPath.lastIndexOf('/') + 1);
+
+      let audioPath = "audios/" + audioFile;
+
+      fetch(audioPath)
+        .then(response => {
+          const container = document.getElementById("container");
+          if (response.ok) {
+            // Audio existiert: Audio-Player anzeigen
+            container.innerHTML = `
+              <div class="message">
+                <h1>Audio Datei gefunden</h1>
+                <p>Spiele jetzt: <strong>${audioFile}</strong></p>
+                <audio controls>
+                  <source src="${audioPath}" type="audio/mpeg" />
+                  Dein Browser unterstützt das Audio-Element nicht.
+                </audio>
+              </div>
+            `;
+          } else {
+            // 404-Fehlerseite anzeigen
+            container.innerHTML = `
+              <div class="message">
+                <h1>404 - Datei nicht gefunden</h1>
+                <p>Die angeforderte Audiodatei <strong>${audioFile}</strong> existiert nicht.</p>
+                <p>Bitte überprüfe die URL oder wähle eine andere Datei.</p>
+              </div>
+            `;
+          }
+        })
+        .catch(error => {
+          console.error('Fehler beim Abrufen der Audiodatei:', error);
+          document.getElementById("container").innerHTML = `
+            <div class="message">
+              <h1>Fehler</h1>
+              <p>Beim Verarbeiten deiner Anfrage ist ein Fehler aufgetreten.</p>
+            </div>
+          `;
+        });
+    });
+  </script>
+</head>
+<body>
+  <div id="container">
+  </div>
+</body>
+</html>
