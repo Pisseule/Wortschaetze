@@ -48,12 +48,21 @@
           const container = document.getElementById("container");
           if (response.ok) {
             // Audio existiert: Audio-Player anzeigen
+	const ext = audioFile.Split('.').pop().toLowerCase();
+	let type = "";
+	switch (ext) {
+          case 'mp3': type = 'audio/mpeg';
+          case 'm4a': type = 'audio/mp4';
+          case 'aac': type = 'audio/aac';
+          case 'wav': type = 'audio/wav';
+          case 'ogg': type = 'audio/ogg';
+        }
             container.innerHTML = `
               <div class="message">
                 <h1>Audio Datei gefunden</h1>
                 <p>Spiele jetzt: <strong>${audioFile}</strong></p>
                 <audio controls>
-                  <source src="${audioPath}" type="audio/mpeg" />
+                  <source src="${audioPath}" type="${type}" />
                   Dein Browser unterstützt das Audio-Element nicht.
                 </audio>
               </div>
