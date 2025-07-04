@@ -48,7 +48,7 @@
           const container = document.getElementById("container");
           if (response.ok) {
             // Audio existiert: Audio-Player anzeigen
-	const ext = audioFile.Split('.').pop().toLowerCase();
+	const ext = audioFile.split('.').pop().toLowerCase();
 	let type = "";
 	switch (ext) {
           case 'mp3': type = 'audio/mpeg';
