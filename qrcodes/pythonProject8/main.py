@@ -2,12 +2,12 @@ import qrcode
 import os
 
 try:
-    os.remove("../qrcdoes")
+    os.remove("../qrcodes")
 except:
-    print("Directory 'qrcdoes' does not exist, creating a new one.")
+    print("Directory 'qrcodes' does not exist, creating a new one.")
 
 print("Creating QR codes for audio files...")
-os.makedirs("../qrcdoes", exist_ok=True)
+os.makedirs("../qrcodes", exist_ok=True)
 
 for file in os.listdir("../../audios"):
     try:
@@ -21,6 +21,6 @@ for file in os.listdir("../../audios"):
         qr.add_data(url)
         qr.make(fit=True)
         print(f"Creating QR code for {file}...")
-        qr.make_image(fill_color="black", back_color="white").save("../qrcdoes/" + file + ".png")
+        qr.make_image(fill_color="black", back_color="white").save("../qrcodes/" + file + ".png")
     except Exception as e:
         print("Error creating QR code for", file, ":", e)
