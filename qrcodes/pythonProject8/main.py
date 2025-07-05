@@ -11,7 +11,8 @@ audio_extensions = {
 'flac,'
 'mid',
 '3gp',
-'3g2'
+'3g2',
+'mp4'
 }
 
 
