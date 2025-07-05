@@ -51,15 +51,18 @@
 	const ext = audioFile.split('.').pop().toLowerCase();
 	let type = "";
 	switch (ext) {
-          case 'mp3': type = 'audio/mpeg';
-		break;
-          case 'm4a': type = 'audio/mp4';
-		break;
-          case 'aac': type = 'audio/aac';
-		break;
-          case 'wav': type = 'audio/wav';
-		break;
-        }
+  		case 'mp3': type = 'audio/mpeg'; break;
+  		case 'm4a': type = 'audio/mp4'; break;
+  		case 'aac': type = 'audio/aac'; break;
+  		case 'wav': type = 'audio/wav'; break;
+  		case 'ogg': case 'oga': type = 'audio/ogg'; break;
+  		case 'opus': type = 'audio/ogg'; break; // or 'audio/webm' for some files
+  		case 'weba': type = 'audio/webm'; break;
+  		case 'flac': type = 'audio/flac'; break;
+  		case 'mid': case 'midi': type = 'audio/midi'; break;
+  		case '3gp': type = 'audio/3gpp'; break;
+  		case '3g2': type = 'audio/3gpp2'; break;
+	}
 	if(type != ""){
             container.innerHTML = `
               <div class="message">
