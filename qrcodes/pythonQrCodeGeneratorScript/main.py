@@ -1,5 +1,6 @@
 import qrcode
 import os
+
 audio_extensions = {
 'mp3',
 'm4a',
