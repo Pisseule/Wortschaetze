@@ -27,12 +27,12 @@ os.makedirs("../qrcodes", exist_ok=True)
 for file in os.listdir("../../audios"):
     try:
         if any(file.endswith(ext) for ext in audio_extensions):
-            url = f"www.Wortschätze.net/{file}"
+            url = f"https://www.Wortschätze.net/{file}"
             qr = qrcode.QRCode(
                 version=1,
                 error_correction=qrcode.constants.ERROR_CORRECT_L,
                 box_size=10,
-                border=4,
+                border=0,
             )
             qr.add_data(url)
             qr.make(fit=True)
